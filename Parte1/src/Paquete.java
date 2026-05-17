@@ -2,10 +2,10 @@ public class Paquete {
     private int id;
     private String codigoIdentificador;
     private int peso;
-    private int contieneAliementos;
+    private boolean contieneAliementos;
     private int nivelUrgencia;
 
-    public Paquete(int id, String codigoIdentificador, int peso, int contieneAliementos, int nivelUrgencia) {
+    public Paquete(int id, String codigoIdentificador, int peso, boolean contieneAliementos, int nivelUrgencia) {
         this.id = id;
         this.codigoIdentificador = codigoIdentificador;
         this.peso = peso;
@@ -31,17 +31,17 @@ public class Paquete {
 
     public double getPeso() {
         return peso;
-    }.
+    }
 
     public void setPeso(int peso) {
         this.peso = peso;
     }
 
-    public int isContieneAliementos() {
+    public boolean isContieneAlimentos() {
         return contieneAliementos;
     }
 
-    public void setContieneAliementos(int contieneAliementos) {
+    public void setContieneAliementos(boolean contieneAliementos) {
         this.contieneAliementos = contieneAliementos;
     }
 
@@ -52,4 +52,6 @@ public class Paquete {
     public void setNivelUrgencia(int nivelUrgencia) {
         this.nivelUrgencia = nivelUrgencia;
     }
+
+
 }

@@ -1,15 +1,51 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        String archivoCamiones = "Camiones.csv";
+        String archivoPaquetes = "Paquetes.csv";
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        //Iniciamos servicios
+        Servicios servicios = new Servicios(archivoCamiones, archivoPaquetes);
+
+        //S1
+        System.out.println("Servicio 1:");
+        String codigoABuscar = "P003";
+        Paquete paqueteEncontrado = servicios.servicio1(codigoABuscar);
+        if (paqueteEncontrado != null) {
+            System.out.println("Codigo : " + paqueteEncontrado.getCodigoIdentificador()  + " Alimentos : " + paqueteEncontrado.isContieneAlimentos()  + " Urgencia: " + paqueteEncontrado.getNivelUrgencia());
+        } else {
+            System.out.println("Paquete no encontrado: " + codigoABuscar);
+        }
+        System.out.println();
+
+        //S2 contiene
+        System.out.println("Servicio 2:");
+        List<Paquete> conAlimentos = servicios.servicio2(true);
+        for (Paquete p : conAlimentos) {
+            System.out.println("Paquete : " + p.getCodigoIdentificador() + " contiene alimentos");
+        }
+
+        //S2 no contiene
+        System.out.println("Servicio 2 (no contiene):");
+        List<Paquete> sinAlimentos = servicios.servicio2(false);
+        for (Paquete p : sinAlimentos) {
+            System.out.println("Paquete : " + p.getCodigoIdentificador() + " no contiene alimentos");
+        }
+        System.out.println();
+
+        //S3
+        System.out.println("Servicio 3 rango 10 y 90:");
+        int minUrgencia = 10;
+        int maxUrgencia = 90;
+        List<Paquete> paquetesPorUrgencia = servicios.servicio3(minUrgencia, maxUrgencia);
+
+        if (paquetesPorUrgencia.isEmpty()) {
+            System.out.println("No hay paquetes en ese rango");
+        } else {
+            for (Paquete p : paquetesPorUrgencia) {
+                System.out.println("Paquete: " + p.getCodigoIdentificador() + " Urgencia: " + p.getNivelUrgencia());
+            }
         }
     }
 }
